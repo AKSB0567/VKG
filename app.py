@@ -137,6 +137,34 @@ QUERIES = {
         },
         "formula": None,
     },
+    "Q010 — Multiplicity [FLARE]": {
+        "id": "Q010_multiplicity", "dataset": "FLARE",
+        "text": "Find scans with multi-focal tumors or multi-organ involvement.",
+        "constraints": ["multiplicity"], "min_tier": "T1", "t5_weight": "0%",
+        "relevant_total": "22 / 85",
+        "tiers": {
+            "T1": {"count": 10, "scans": [("F1575",True,0,1.0),("F2100",True,1,0.98),("F0488",True,2,0.857),("F1115",True,3,0.857),("F1158",True,4,0.639),("F0689",True,5,0.596),("F0487",True,6,0.587),("F0955",True,7,0.54),("F2175",True,8,0.525),("F1474",True,9,0.44)]},
+            "T2": {"count": 10, "scans": [("F2100",True,0,0.996),("F1575",True,1,0.971),("F1115",True,2,0.906),("F0488",True,3,0.855),("F0689",True,4,0.636),("F1158",True,5,0.625),("F0487",True,6,0.548),("F2175",True,7,0.525),("F0955",True,8,0.524),("F1474",True,9,0.503)]},
+            "T3": {"count": 10, "scans": [("F2100",True,0,0.995),("F1575",True,1,0.969),("F1115",True,2,0.896),("F0488",True,3,0.862),("F0689",True,4,0.633),("F1158",True,5,0.62),("F1474",True,6,0.56),("F0487",True,7,0.551),("F0955",True,8,0.541),("F2175",True,9,0.534)]},
+            "T4": {"count": 10, "scans": [("F1575",True,0,1.0),("F2100",True,1,0.991),("F0488",True,2,0.934),("F1115",True,3,0.886),("F0689",True,4,0.65),("F0487",True,5,0.578),("F2175",True,6,0.555),("F1158",True,7,0.522),("F1474",True,8,0.494),("F0083",True,9,0.477)]},
+            "T5": {"count": 10, "scans": [("F2100",True,0,0.998),("F1575",True,1,0.975),("F0488",True,2,0.957),("F1115",True,3,0.921),("F0689",True,4,0.576),("F0487",True,5,0.537),("F2175",True,6,0.505),("F1158",True,7,0.502),("F1474",True,8,0.496),("F0083",True,9,0.487)]},
+        },
+        "takeaway": "All 5 tiers retrieve 10/10 relevant scans — a perfect hit rate. Multiplicity is captured directly by tabular tumor/organ count features.",
+    },
+    "Q138 — Volume + Containment [FLARE]": {
+        "id": "Q138_volume_containment", "dataset": "FLARE",
+        "text": "Find scans with high tumor volume AND complex organ topology (strong evidence paths).",
+        "constraints": ["volume", "containment"], "min_tier": "T5", "t5_weight": "61.1%",
+        "relevant_total": "20 / 85",
+        "tiers": {
+            "T1": {"count": 3, "scans": [("F1273",False,0,1.0),("F1074",True,1,0.926),("F0003",True,2,0.921),("F0281",False,3,0.904),("F1474",False,4,0.859),("F0487",False,5,0.786),("F1495",False,6,0.767),("F2017",False,7,0.763),("F1991",False,8,0.761),("F1654",True,9,0.758)]},
+            "T2": {"count": 3, "scans": [("F1273",False,0,0.967),("F1074",True,1,0.947),("F0003",True,2,0.929),("F1474",False,3,0.874),("F0281",False,4,0.852),("F1495",False,5,0.808),("F1056",False,6,0.773),("F0802",False,7,0.77),("F1991",False,8,0.763),("F1107",True,9,0.762)]},
+            "T3": {"count": 10, "scans": [("F0239",True,0,0.996),("F1314",True,1,0.991),("F1074",True,2,0.974),("F2123",True,3,0.973),("F0106",True,4,0.97),("F1115",True,5,0.966),("F0128",True,6,0.965),("F1225",True,7,0.961),("F0805",True,8,0.952),("F1107",True,9,0.916)]},
+            "T4": {"count": 10, "scans": [("F0955",True,0,0.919),("F0239",True,1,0.886),("F1314",True,2,0.884),("F0128",True,3,0.874),("F0106",True,4,0.871),("F2123",True,5,0.864),("F1074",True,6,0.855),("F1225",True,7,0.852),("F1115",True,8,0.831),("F0805",True,9,0.826)]},
+            "T5": {"count": 10, "scans": [("F0955",True,0,0.936),("F1314",True,1,0.908),("F1115",True,2,0.899),("F0239",True,3,0.89),("F2123",True,4,0.88),("F1225",True,5,0.871),("F1453",True,6,0.859),("F0128",True,7,0.855),("F1074",True,8,0.854),("F1107",True,9,0.849)]},
+        },
+        "takeaway": "Massive T3 jump (3→10). Containment requires organ topology — CLIP captures spatial patterns. Top-10 completely restructured.",
+    },
 }
 
 TIER_COLORS = {"T1": "#607D8B", "T2": "#2196F3", "T3": "#FF9800", "T4": "#4CAF50", "T5": "#E91E63"}
