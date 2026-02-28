@@ -2,7 +2,9 @@
 
 > **Interactive demo** showcasing how progressive feature tiers (T1→T5) improve medical CT scan retrieval using Visual Knowledge Graphs.
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://vkg-demo.streamlit.app)
+🔗 **Live Demo:** [https://vkg-cvpr.streamlit.app/](https://vkg-cvpr.streamlit.app/)
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://vkg-cvpr.streamlit.app/)
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-FF4B4B?logo=streamlit)
@@ -240,7 +242,7 @@ git push origin main
 
 Once deployed, the app will be available at:
 
-🔗 **https://vkg-demo.streamlit.app** (or the URL assigned by Streamlit Cloud)
+🔗 **https://vkg-cvpr.streamlit.app/**
 
 ---
 
