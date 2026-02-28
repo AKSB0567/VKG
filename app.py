@@ -165,6 +165,48 @@ QUERIES = {
         },
         "takeaway": "Massive T3 jump (3→10). Containment requires organ topology — CLIP captures spatial patterns. Top-10 completely restructured.",
     },
+    "Q028 — Coverage + Proximity [Pancreas]": {
+        "id": "Q028_coverage_proximity", "dataset": "Pancreas",
+        "text": "Find scans with high tumor coverage within the host organ AND close spatial proximity to adjacent structures.",
+        "constraints": ["coverage", "proximity"], "min_tier": "T5", "t5_weight": "38.0%",
+        "relevant_total": "14 / 57",
+        "tiers": {
+            "T1": {"count": 4, "scans": [("P094",False,0,0.978),("P088",False,1,0.956),("P414",True,2,0.928),("P391",False,3,0.909),("P041",True,4,0.895),("P012",True,5,0.781),("P071",False,6,0.704),("P131",True,7,0.618),("P086",False,8,0.595),("P405",False,9,0.534)]},
+            "T2": {"count": 2, "scans": [("P074",False,0,0.949),("P310",False,1,0.869),("P071",False,2,0.859),("P398",True,3,0.847),("P391",False,4,0.8),("P157",False,5,0.789),("P350",False,6,0.736),("P012",True,7,0.691),("P094",False,8,0.684),("P231",False,9,0.664)]},
+            "T3": {"count": 10, "scans": [("P098",True,0,0.978),("P041",True,1,0.974),("P274",True,2,0.92),("P012",True,3,0.919),("P395",True,4,0.872),("P398",True,5,0.852),("P107",True,6,0.845),("P122",True,7,0.841),("P125",True,8,0.826),("P414",True,9,0.816)]},
+            "T4": {"count": 10, "scans": [("P041",True,0,0.999),("P098",True,1,0.978),("P274",True,2,0.931),("P012",True,3,0.897),("P107",True,4,0.893),("P395",True,5,0.882),("P125",True,6,0.856),("P122",True,7,0.823),("P414",True,8,0.818),("P398",True,9,0.806)]},
+            "T5": {"count": 10, "scans": [("P041",True,0,0.978),("P098",True,1,0.96),("P274",True,2,0.924),("P107",True,3,0.882),("P012",True,4,0.86),("P125",True,5,0.857),("P395",True,6,0.85),("P122",True,7,0.839),("P398",True,8,0.812),("P414",True,9,0.81)]},
+        },
+        "takeaway": "Biggest T5 gain: 4→10 relevant (+6). Coverage+proximity needs visual understanding — CLIP is the key unlock.",
+    },
+    "Q009 — Coverage + Containment + Proximity [Pancreas]": {
+        "id": "Q009_coverage_containment_proximity", "dataset": "Pancreas",
+        "text": "Find scans with high tumor coverage AND complex organ topology AND close proximity to adjacent structures.",
+        "constraints": ["coverage", "containment", "proximity"], "min_tier": "T5", "t5_weight": "63.3%",
+        "relevant_total": "10 / 57",
+        "tiers": {
+            "T1": {"count": 2, "scans": [("P094",False,0,0.971),("P088",False,1,0.956),("P414",True,2,0.863),("P041",True,3,0.855),("P391",False,4,0.846),("P012",False,5,0.799),("P071",False,6,0.676),("P131",False,7,0.657),("P086",False,8,0.606),("P405",False,9,0.536)]},
+            "T2": {"count": 1, "scans": [("P074",False,0,0.949),("P398",True,1,0.891),("P071",False,2,0.879),("P310",False,3,0.879),("P157",False,4,0.841),("P350",False,5,0.754),("P391",False,6,0.754),("P231",False,7,0.725),("P256",False,8,0.716),("P094",False,9,0.701)]},
+            "T3": {"count": 8, "scans": [("P041",True,0,1.0),("P098",True,1,0.969),("P012",False,2,0.912),("P274",True,3,0.909),("P395",True,4,0.904),("P398",True,5,0.874),("P107",True,6,0.871),("P122",True,7,0.869),("P278",False,8,0.837),("P414",True,9,0.829)]},
+            "T4": {"count": 8, "scans": [("P041",True,0,1.0),("P098",True,1,0.973),("P274",True,2,0.94),("P107",True,3,0.908),("P395",True,4,0.901),("P012",False,5,0.886),("P125",True,6,0.863),("P122",True,7,0.838),("P414",True,8,0.838),("P278",False,9,0.822)]},
+            "T5": {"count": 9, "scans": [("P041",True,0,0.962),("P098",True,1,0.945),("P274",True,2,0.918),("P107",True,3,0.872),("P125",True,4,0.844),("P395",True,5,0.843),("P012",False,6,0.829),("P122",True,7,0.828),("P414",True,8,0.825),("P398",True,9,0.802)]},
+        },
+        "takeaway": "Progressive: 2→1→8→8→9. 3-constraint query needs all modalities. CLIP main unlock, VKG pushes to near-perfect 9/10.",
+    },
+    "Q059 — Volume + Proximity + Containment [LiTS]": {
+        "id": "Q059_volume_proximity_containment", "dataset": "LiTS",
+        "text": "Find scans with high tumor volume AND close proximity to adjacent structures AND complex organ topology.",
+        "constraints": ["volume", "proximity", "containment"], "min_tier": "T5", "t5_weight": "61.7%",
+        "relevant_total": "6 / 24",
+        "tiers": {
+            "T1": {"count": 3, "scans": [("9",False,0,0.873),("8",False,1,0.863),("21",False,2,0.862),("18",False,3,0.861),("78",False,4,0.852),("79",False,5,0.846),("103",True,6,0.836),("1",False,7,0.829),("113",True,8,0.826),("124",True,9,0.823)]},
+            "T2": {"count": 2, "scans": [("8",False,0,0.968),("21",False,1,0.958),("69",False,2,0.915),("14",False,3,0.852),("9",False,4,0.817),("113",True,5,0.816),("0",False,6,0.804),("1",False,7,0.804),("18",False,8,0.785),("58",True,9,0.783)]},
+            "T3": {"count": 3, "scans": [("103",True,0,0.988),("113",True,1,0.986),("74",False,2,0.96),("9",False,3,0.952),("78",False,4,0.95),("58",True,5,0.944),("71",False,6,0.918),("14",False,7,0.907),("69",False,8,0.897),("21",False,9,0.892)]},
+            "T4": {"count": 3, "scans": [("103",True,0,0.983),("113",True,1,0.981),("74",False,2,0.953),("58",True,3,0.95),("9",False,4,0.94),("78",False,5,0.933),("71",False,6,0.92),("14",False,7,0.899),("21",False,8,0.887),("69",False,9,0.886)]},
+            "T5": {"count": 6, "scans": [("113",True,0,0.96),("58",True,1,0.943),("103",True,2,0.939),("9",False,3,0.925),("78",False,4,0.916),("74",False,5,0.905),("71",False,6,0.905),("124",True,7,0.882),("97",True,8,0.877),("118",True,9,0.865)]},
+        },
+        "takeaway": "Most dramatic: T1–T4 plateau at 2–3/6, only T5 VKG reasoning achieves PERFECT 6/6.",
+    },
 }
 
 TIER_COLORS = {"T1": "#607D8B", "T2": "#2196F3", "T3": "#FF9800", "T4": "#4CAF50", "T5": "#E91E63"}
