@@ -680,28 +680,31 @@ with tab4:
 
 # === TAB 5: Summary Dashboard ================================================
 with tab5:
-    st.markdown("### 📊 Integrated Evaluation — Three Case Studies (Table 7)")
-    st.markdown("*Retrieval performance (Relevant@K) comparing baseline (T1) and VKG reasoning (T5) across three representative case studies.*")
-    # Table 7 from the paper
+    st.markdown("### 📊 Integrated Evaluation — All Query Cases")
+    st.markdown("*Retrieval performance (Relevant@K) comparing baseline (T1) and VKG reasoning (T5) across all query cases.*")
+    # Full summary table — all 8 cases
     table7_rows = [
-        {"Case Study": "CS1 (LiTS)", "Clinical Task": "High-risk liver phenotype retrieval", "Constraints": "Vol + Prox + Cont", "Baseline (T1)": "3/6", "VKG (T5)": "6/6", "Progression": "3→2→3→3→6"},
-        {"Case Study": "CS2 (Pancreas)", "Clinical Task": "Progressive multimodal reasoning", "Constraints": "Cov + Cont + Prox", "Baseline (T1)": "2/10", "VKG (T5)": "9/10", "Progression": "2→1→8→8→9"},
-        {"Case Study": "CS3 (Pancreas)", "Clinical Task": "Clinical ranking correction", "Constraints": "Cov + Prox", "Baseline (T1)": "4/14", "VKG (T5)": "10/14", "Progression": "4→4→10→10→10"},
+        {"Case": "CS1", "Dataset": "LiTS", "Query": "High-risk liver phenotype", "Constraints": "Vol + Prox + Cont", "Baseline (T1)": "3/6", "VKG (T5)": "6/6", "Hits T1→T5": "3→2→3→3→6", "Insight": "Only VKG achieves perfect retrieval"},
+        {"Case": "CS2", "Dataset": "Pancreas", "Query": "Progressive multimodal reasoning", "Constraints": "Cov + Cont + Prox", "Baseline (T1)": "2/10", "VKG (T5)": "9/10", "Hits T1→T5": "2→1→8→8→9", "Insight": "Progressive emergence across tiers"},
+        {"Case": "CS3", "Dataset": "Pancreas", "Query": "Clinical ranking correction", "Constraints": "Cov + Prox", "Baseline (T1)": "4/14", "VKG (T5)": "10/14", "Hits T1→T5": "4→4→10→10→10", "Insight": "CLIP reorganizes ranking at T3"},
+        {"Case": "Q010", "Dataset": "FLARE", "Query": "Multiplicity", "Constraints": "Multiplicity", "Baseline (T1)": "10/22", "VKG (T5)": "10/22", "Hits T1→T5": "10→10→10→10→10", "Insight": "All tiers equivalent"},
+        {"Case": "Q138", "Dataset": "FLARE", "Query": "Volume + Containment", "Constraints": "Vol + Cont", "Baseline (T1)": "3/20", "VKG (T5)": "10/20", "Hits T1→T5": "3→3→10→10→10", "Insight": "CLIP reshuffles top-10"},
+        {"Case": "Q028", "Dataset": "Pancreas", "Query": "Coverage + Proximity", "Constraints": "Cov + Prox", "Baseline (T1)": "4/14", "VKG (T5)": "10/14", "Hits T1→T5": "4→2→10→10→10", "Insight": "CLIP key unlock +8 at T3"},
+        {"Case": "Q009", "Dataset": "Pancreas", "Query": "Coverage + Containment + Proximity", "Constraints": "Cov + Cont + Prox", "Baseline (T1)": "2/10", "VKG (T5)": "9/10", "Hits T1→T5": "2→1→8→8→9", "Insight": "CLIP + VKG progressive"},
+        {"Case": "Q059", "Dataset": "LiTS", "Query": "Volume + Proximity + Containment", "Constraints": "Vol + Prox + Cont", "Baseline (T1)": "3/6", "VKG (T5)": "6/6", "Hits T1→T5": "3→2→3→3→6", "Insight": "Only VKG perfect retrieval"},
     ]
     st.dataframe(pd.DataFrame(table7_rows), use_container_width=True, hide_index=True)
     st.markdown("---")
-    # Case study performance bar chart
-    st.markdown("#### 📈 Retrieval Performance Across Case Studies")
+    # All cases performance bar chart
+    st.markdown("#### 📈 Retrieval Performance — Baseline (T1) vs VKG (T5)")
     fig_cs = go.Figure()
-    cs_labels = ["CS1\n(LiTS)", "CS2\n(Pancreas)", "CS3\n(Pancreas)"]
-    t1_vals = [3, 2, 4]
-    t5_vals = [6, 9, 10]
-    totals = [6, 10, 14]
-    fig_cs.add_trace(go.Bar(name="Baseline (T1)", x=cs_labels, y=t1_vals, marker_color="#607D8B", text=t1_vals, textposition="outside", textfont=dict(size=14)))
-    fig_cs.add_trace(go.Bar(name="VKG (T5)", x=cs_labels, y=t5_vals, marker_color="#E91E63", text=t5_vals, textposition="outside", textfont=dict(size=14)))
-    for i, tot in enumerate(totals):
-        fig_cs.add_annotation(x=cs_labels[i], y=tot+0.5, text=f"Total: {tot}", showarrow=False, font=dict(size=11, color="#475569"))
-    fig_cs.update_layout(barmode="group", template="plotly_white", paper_bgcolor="white", plot_bgcolor="#f8fafc", height=380, yaxis_title="# Relevant Retrieved", font=dict(family="Inter", color="#1e293b"), legend=dict(orientation="h", y=1.15))
+    cs_labels = ["CS1\n(LiTS)", "CS2\n(Panc)", "CS3\n(Panc)", "Q010\n(FLARE)", "Q138\n(FLARE)", "Q028\n(Panc)", "Q009\n(Panc)", "Q059\n(LiTS)"]
+    t1_vals = [3, 2, 4, 10, 3, 4, 2, 3]
+    t5_vals = [6, 9, 10, 10, 10, 10, 9, 6]
+    totals = [6, 10, 14, 22, 20, 14, 10, 6]
+    fig_cs.add_trace(go.Bar(name="Baseline (T1)", x=cs_labels, y=t1_vals, marker_color="#607D8B", text=t1_vals, textposition="outside", textfont=dict(size=12)))
+    fig_cs.add_trace(go.Bar(name="VKG (T5)", x=cs_labels, y=t5_vals, marker_color="#E91E63", text=t5_vals, textposition="outside", textfont=dict(size=12)))
+    fig_cs.update_layout(barmode="group", template="plotly_white", paper_bgcolor="white", plot_bgcolor="#f8fafc", height=420, yaxis_title="# Relevant in Top-10", font=dict(family="Inter", color="#1e293b"), legend=dict(orientation="h", y=1.15))
     st.plotly_chart(fig_cs, use_container_width=True)
     st.markdown("---")
     # §4.4 Summary of Insights
